@@ -40,10 +40,12 @@ export function Footer() {
           <div>
             <h4 className="text-white font-display font-bold mb-6">Company</h4>
             <ul className="space-y-4">
-              <li><a href="#services" className="text-foreground-muted hover:text-primary transition-colors text-sm">Services</a></li>
+              <li><a href="/#services" className="text-foreground-muted hover:text-primary transition-colors text-sm">Services</a></li>
               <li><a href="/portfolio" className="text-foreground-muted hover:text-primary transition-colors text-sm">Portfolio</a></li>
-              <li><a href="#" className="text-foreground-muted hover:text-primary transition-colors text-sm">About Us</a></li>
-              <li><a href="#contact" className="text-foreground-muted hover:text-primary transition-colors text-sm">Contact</a></li>
+              <li><a href="/about" className="text-foreground-muted hover:text-primary transition-colors text-sm">About Us</a></li>
+              <li><a href="/#contact" className="text-foreground-muted hover:text-primary transition-colors text-sm">Contact</a></li>
+              <li><a href="/privacy-policy" className="text-foreground-muted hover:text-primary transition-colors text-sm">Privacy Policy</a></li>
+              <li><a href="/terms-conditions" className="text-foreground-muted hover:text-primary transition-colors text-sm">Terms &amp; Conditions</a></li>
             </ul>
           </div>
 
