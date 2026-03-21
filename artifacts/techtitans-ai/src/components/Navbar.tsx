@@ -30,13 +30,12 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-shadow">
-            <span className="text-white font-display font-bold text-lg">T</span>
-          </div>
-          <span className="font-display font-bold text-xl tracking-tight">
-            TechTitans <span className="text-gradient">AI</span>
-          </span>
+        <a href="#" className="flex items-center group">
+          <img
+            src="/logo.png"
+            alt="TechTitans AI"
+            className="h-12 w-auto object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.5)] group-hover:drop-shadow-[0_0_14px_rgba(59,130,246,0.8)] transition-all duration-300"
+          />
         </a>
 
         {/* Desktop Nav */}
