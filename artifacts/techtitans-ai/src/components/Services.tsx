@@ -1,35 +1,42 @@
-import { PenTool, Video, Layout, Code } from "lucide-react";
+import { Megaphone, Video, Bot, Layers, ClipboardList } from "lucide-react";
 import { FadeIn } from "./ui/fade-in";
 
 const services = [
   {
-    title: "Branding",
-    description: "Create an unforgettable identity that resonates with your audience and establishes market authority.",
-    icon: PenTool,
+    title: "Branding & Marketing",
+    description: "Build an unforgettable brand identity and market it with precision — from logo and visual systems to full digital marketing campaigns that drive real growth.",
+    icon: Megaphone,
     color: "from-purple-500 to-indigo-500",
-    delay: 0.1
+    delay: 0.1,
   },
   {
     title: "Video Editing",
-    description: "Cinematic, high-retention video content designed for modern platforms and audience engagement.",
+    description: "Cinematic, high-retention video content designed for modern platforms. From brand films and YouTube content to social reels and product videos.",
     icon: Video,
     color: "from-pink-500 to-rose-500",
-    delay: 0.2
+    delay: 0.2,
   },
   {
-    title: "Graphic Design",
-    description: "Stunning visuals, marketing assets, and ad creatives that convert attention into action.",
-    icon: Layout,
+    title: "AI / Process Automation",
+    description: "Harness the power of AI and automation to eliminate repetitive tasks, streamline operations, and accelerate your business with intelligent workflows.",
+    icon: Bot,
     color: "from-amber-500 to-orange-500",
-    delay: 0.3
+    delay: 0.3,
   },
   {
-    title: "Web Development",
-    description: "Blazing fast, perfectly responsive, and beautifully animated websites that drive results.",
-    icon: Code,
+    title: "Product Development",
+    description: "From concept to launch — we design and build blazing-fast, scalable digital products: websites, web apps, SaaS platforms, and e-commerce stores.",
+    icon: Layers,
     color: "from-primary to-accent",
-    delay: 0.4
-  }
+    delay: 0.4,
+  },
+  {
+    title: "Project Management",
+    description: "End-to-end project oversight to keep your initiatives on track, on budget, and on time. We coordinate teams, timelines, and deliverables so you can focus on growth.",
+    icon: ClipboardList,
+    color: "from-green-500 to-teal-500",
+    delay: 0.5,
+  },
 ];
 
 export function Services() {
@@ -45,9 +52,13 @@ export function Services() {
           </p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, index) => (
-            <FadeIn key={index} delay={service.delay}>
+            <FadeIn
+              key={index}
+              delay={service.delay}
+              className={index === 4 ? "md:col-span-2 lg:col-span-1" : ""}
+            >
               <div className="glass-card glow-border group rounded-3xl p-8 lg:p-10 h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
                 <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 relative overflow-hidden">
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-20 group-hover:opacity-40 transition-opacity duration-300`} />

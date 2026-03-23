@@ -30,7 +30,7 @@ export function Hero() {
 
           <FadeIn delay={0.3}>
             <p className="text-lg sm:text-xl text-foreground-muted max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Premium branding, video editing, graphic design & web development for startups and creators who want to stand out.
+              Premium branding & marketing, video editing, AI automation, product development & project management for startups and creators who want to stand out.
             </p>
           </FadeIn>
 
