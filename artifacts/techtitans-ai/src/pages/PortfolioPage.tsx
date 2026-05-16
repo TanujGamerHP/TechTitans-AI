@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, ArrowLeft } from "lucide-react";
+import { ArrowUpRight, ArrowLeft, Loader2 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { projects } from "@/data/projects";
+import { useProjects } from "@/hooks/useProjects";
 
 const FILTERS = [
   { label: "All Work", value: "all" },
@@ -19,8 +19,9 @@ const FILTERS = [
 export default function PortfolioPage() {
   const [, navigate] = useLocation();
   const [active, setActive] = useState("all");
+  const { data: projects = [], isLoading } = useProjects();
 
-  const filtered = active === "all" ? projects : projects.filter((p) => p.serviceId === active);
+  const filtered = active === "all" ? projects : projects.filter((p: any) => p.serviceId === active);
 
   return (
     <main className="min-h-screen bg-background">
@@ -61,9 +62,14 @@ export default function PortfolioPage() {
         </motion.div>
 
         {/* Projects Grid */}
+        {isLoading ? (
+          <div className="flex items-center justify-center py-24 text-foreground-muted">
+            <Loader2 className="w-6 h-6 animate-spin mr-3" /> Loading projects...
+          </div>
+        ) : null}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           <AnimatePresence mode="popLayout">
-            {filtered.map((project, index) => (
+            {filtered.map((project: any, index: number) => (
               <motion.div
                 key={project.id}
                 layout

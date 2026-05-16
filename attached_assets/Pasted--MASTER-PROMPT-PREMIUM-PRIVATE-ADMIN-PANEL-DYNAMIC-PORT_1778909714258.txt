@@ -1,0 +1,521 @@
+# MASTER PROMPT — PREMIUM PRIVATE ADMIN PANEL + DYNAMIC PORTFOLIO CMS SYSTEM
+
+Create a fully dynamic, premium, secure, and scalable admin panel system for my existing cinematic portfolio agency website.
+
+The goal is to eliminate manual coding whenever new projects are added.
+
+I want a professional internal CMS/dashboard where I can manage every project, media file, service, sub-service, and case study dynamically from a private admin panel.
+
+The admin panel must NOT be publicly accessible.
+
+It should feel like:
+
+* premium SaaS dashboard
+* cinematic dark UI
+* futuristic control center
+* modern creative studio backend
+
+NOT like:
+
+* WordPress admin
+* basic CRUD panel
+* template dashboard
+* boring tables
+
+The entire system must integrate perfectly with the main website design language.
+
+---
+
+# MAIN OBJECTIVE
+
+Whenever I add a new project from the admin panel:
+
+* it should automatically appear in the correct service
+* correct sub-service
+* correct portfolio category
+* correct case study section
+
+WITHOUT manual frontend editing.
+
+The system must dynamically handle:
+
+* layout
+* media sizing
+* responsiveness
+* aspect ratios
+* galleries
+* previews
+* thumbnails
+* featured projects
+
+automatically.
+
+I should never need to manually adjust CSS or image positioning for every new project.
+
+---
+
+# CORE SYSTEM ARCHITECTURE
+
+Create a complete dynamic CMS-like structure.
+
+---
+
+# WEBSITE STRUCTURE
+
+## Main Services
+
+1. Creative Branding & Marketing
+2. Web & App Development
+3. Video Production & Editing
+4. Digital Infrastructure & Maintenance
+5. Mentorship & Career Guidance
+6. AI Automation Solutions
+
+---
+
+# SUB-SERVICES STRUCTURE
+
+Every main service contains sub-services.
+
+Example:
+
+Creative Branding & Marketing:
+
+* Logo Design
+* Packaging Design
+* Editorial Design
+* Social Media Design
+* Label Design
+* Banner Design
+
+Video Editing:
+
+* Reels Editing
+* Long-form Editing
+* Motion Graphics
+
+etc.
+
+---
+
+# ADMIN PANEL REQUIREMENTS
+
+Create a fully secure private admin dashboard.
+
+The admin panel should:
+
+* require authentication
+* be hidden from public users
+* support role protection
+* include secure login
+* include encrypted credentials/session handling
+
+---
+
+# ADMIN DASHBOARD UI STYLE
+
+Design style:
+
+* cinematic dark theme
+* glassmorphism
+* premium neon glow
+* subtle animated gradients
+* floating ambient elements
+* smooth motion transitions
+* modern SaaS feel
+
+The dashboard itself should feel premium and futuristic.
+
+---
+
+# ADMIN PANEL FEATURES
+
+---
+
+# 1. PROJECT MANAGEMENT SYSTEM
+
+I must be able to:
+
+* Add New Project
+* Edit Existing Project
+* Delete Project
+* Duplicate Project
+* Mark as Featured
+* Draft / Publish toggle
+* Archive projects
+
+Everything dynamic.
+
+---
+
+# 2. PROJECT FORM SYSTEM
+
+Create an advanced project upload form.
+
+The form must support:
+
+---
+
+## TEXT INPUTS
+
+* Project Title
+* Short Description
+* Full Case Study
+* Client Name
+* Industry
+* Year
+* Budget
+* Timeline
+* Tools Used
+* Technologies Used
+* Tags
+* CTA Link
+* Live Website Link
+* Behance/External Link
+
+---
+
+## CATEGORY SELECTION
+
+Dropdowns:
+
+* Main Service
+* Sub-Service
+* Project Type
+
+Example:
+Main Service:
+Creative Branding
+
+Sub-service:
+Packaging Design
+
+---
+
+# 3. MEDIA UPLOAD SYSTEM
+
+The admin form must support:
+
+* images
+* videos
+* GIFs
+* PDFs
+* embedded links
+* YouTube/Vimeo embeds
+* downloadable files
+
+---
+
+# 4. SMART MEDIA HANDLING (VERY IMPORTANT)
+
+This is critical.
+
+Whenever I upload media:
+the system must automatically handle:
+
+* aspect ratio
+* cropping
+* responsive scaling
+* thumbnail generation
+* grid fitting
+* image optimization
+* lazy loading
+* preview sizing
+
+WITHOUT manual adjustments.
+
+The website should intelligently adapt all media.
+
+Even if uploaded files have different dimensions.
+
+---
+
+# 5. AUTO RESPONSIVE MEDIA GRID
+
+Create a smart adaptive layout system.
+
+Projects should automatically organize beautifully regardless of:
+
+* image sizes
+* portrait/landscape orientation
+* video dimensions
+
+Use:
+
+* masonry layouts
+* smart grid balancing
+* auto-fit containers
+* responsive aspect handling
+
+The design should always look premium.
+
+Never broken.
+
+Never stretched.
+
+Never misaligned.
+
+---
+
+# 6. FULLSCREEN VIEWER SYSTEM
+
+Add immersive fullscreen viewing.
+
+Users must be able to:
+
+* click images
+* expand videos
+* open gallery fullscreen
+* zoom media
+* navigate galleries smoothly
+
+Features:
+
+* cinematic transitions
+* keyboard navigation
+* swipe support
+* blur background overlay
+* premium animation
+
+---
+
+# 7. DYNAMIC FRONTEND CONNECTION
+
+Whenever a project is added:
+
+It must automatically appear:
+
+* in correct service page
+* correct sub-service page
+* featured sections
+* portfolio grid
+* related projects section
+
+WITHOUT manual coding.
+
+---
+
+# 8. FEATURED PROJECT SYSTEM
+
+Inside admin:
+allow toggling:
+
+* featured project
+* homepage featured
+* trending project
+
+These automatically update frontend sections.
+
+---
+
+# 9. CASE STUDY BUILDER
+
+Create modular case study sections.
+
+Admin should allow adding:
+
+* overview blocks
+* challenge blocks
+* process sections
+* image galleries
+* statistics
+* results
+* testimonials
+
+like modular content builder.
+
+---
+
+# 10. LIVE PREVIEW SYSTEM
+
+Before publishing:
+allow previewing:
+
+* desktop
+* tablet
+* mobile layouts
+
+inside admin panel.
+
+---
+
+# 11. SEARCH & FILTER SYSTEM
+
+Inside admin:
+allow filtering projects by:
+
+* service
+* sub-service
+* year
+* featured status
+* tags
+* client name
+
+---
+
+# FRONTEND PORTFOLIO UPDATE
+
+Update current portfolio pages.
+
+Currently project thumbnails/images are not visible properly.
+
+Fix entire portfolio showcase system.
+
+Each project card must include:
+
+* thumbnail image
+* animated hover preview
+* category tag
+* short description
+* cinematic hover glow
+* smooth motion
+
+---
+
+# PROJECT CARD INTERACTIONS
+
+On hover:
+
+* slight 3D tilt
+* image zoom
+* glow expansion
+* animated border
+* smooth lighting movement
+
+Must feel:
+
+* premium
+* futuristic
+* cinematic
+
+NOT template-based.
+
+---
+
+# PORTFOLIO PAGE LAYOUT
+
+Create:
+
+* category filtering
+* sub-category filtering
+* smooth transitions
+* dynamic loading
+* infinite scroll or premium pagination
+
+---
+
+# BACKGROUND ANIMATION SYSTEM
+
+Maintain cinematic feel across:
+
+* admin dashboard
+* portfolio pages
+* project pages
+
+Use:
+
+* floating ambient particles
+* infinite moving glow elements
+* slow animated gradients
+* subtle depth movement
+* space-inspired atmosphere
+
+Animations must be:
+
+* elegant
+* smooth
+* GPU optimized
+
+Never distracting.
+
+---
+
+# PERFORMANCE REQUIREMENTS
+
+Even with:
+
+* many projects
+* many images
+* videos
+* galleries
+
+the website must remain:
+
+* smooth
+* fast
+* optimized
+
+Use:
+
+* lazy loading
+* media compression
+* optimized rendering
+* CDN-ready architecture
+* efficient animations
+
+---
+
+# SEO REQUIREMENTS
+
+Every project should support:
+
+* SEO title
+* meta description
+* OG image
+* slug generation
+* structured URLs
+
+Example:
+`/branding/packaging-design/organic-honey-packaging`
+
+---
+
+# URL STRUCTURE
+
+Dynamic URLs.
+
+Example flow:
+
+Home
+→ Services
+→ Branding
+→ Packaging Design
+→ Individual Project Case Study
+
+---
+
+# SECURITY REQUIREMENTS
+
+Admin panel must:
+
+* be private
+* protected routes
+* secure authentication
+* prevent unauthorized access
+* support secure file uploads
+
+---
+
+# TECH EXPERIENCE GOAL
+
+The final experience should feel like:
+
+* premium creative-tech studio
+* futuristic digital agency
+* award-winning portfolio system
+* luxury interactive showcase
+
+NOT:
+
+* generic portfolio template
+* basic admin dashboard
+* WordPress clone
+
+Everything should feel:
+
+* cinematic
+* fluid
+* immersive
+* premium
+* futuristic
+* intelligently automated.

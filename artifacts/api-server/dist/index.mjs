@@ -18673,10 +18673,10 @@ var require_view = __commonJS({
     var debug = require_src()("express:view");
     var path = __require("node:path");
     var fs = __require("node:fs");
-    var dirname = path.dirname;
+    var dirname2 = path.dirname;
     var basename = path.basename;
     var extname = path.extname;
-    var join = path.join;
+    var join2 = path.join;
     var resolve = path.resolve;
     module.exports = View;
     function View(name, options) {
@@ -18712,7 +18712,7 @@ var require_view = __commonJS({
       for (var i = 0; i < roots.length && !path2; i++) {
         var root = roots[i];
         var loc = resolve(root, name);
-        var dir = dirname(loc);
+        var dir = dirname2(loc);
         var file = basename(loc);
         path2 = this.resolve(dir, file);
       }
@@ -18738,12 +18738,12 @@ var require_view = __commonJS({
     };
     View.prototype.resolve = function resolve2(dir, file) {
       var ext = this.ext;
-      var path2 = join(dir, file);
+      var path2 = join2(dir, file);
       var stat = tryStat(path2);
       if (stat && stat.isFile()) {
         return path2;
       }
-      path2 = join(dir, basename(file, ext), "index" + ext);
+      path2 = join2(dir, basename(file, ext), "index" + ext);
       stat = tryStat(path2);
       if (stat && stat.isFile()) {
         return path2;
@@ -20481,27 +20481,27 @@ var require_router = __commonJS({
     var slice = Array.prototype.slice;
     var flatten = Array.prototype.flat;
     var methods = METHODS.map((method) => method.toLowerCase());
-    module.exports = Router4;
+    module.exports = Router5;
     module.exports.Route = Route;
-    function Router4(options) {
-      if (!(this instanceof Router4)) {
-        return new Router4(options);
+    function Router5(options) {
+      if (!(this instanceof Router5)) {
+        return new Router5(options);
       }
       const opts = options || {};
-      function router4(req, res, next) {
-        router4.handle(req, res, next);
+      function router5(req, res, next) {
+        router5.handle(req, res, next);
       }
-      Object.setPrototypeOf(router4, this);
-      router4.caseSensitive = opts.caseSensitive;
-      router4.mergeParams = opts.mergeParams;
-      router4.params = {};
-      router4.strict = opts.strict;
-      router4.stack = [];
-      return router4;
+      Object.setPrototypeOf(router5, this);
+      router5.caseSensitive = opts.caseSensitive;
+      router5.mergeParams = opts.mergeParams;
+      router5.params = {};
+      router5.strict = opts.strict;
+      router5.stack = [];
+      return router5;
     }
-    Router4.prototype = function() {
+    Router5.prototype = function() {
     };
-    Router4.prototype.param = function param(name, fn) {
+    Router5.prototype.param = function param(name, fn) {
       if (!name) {
         throw new TypeError("argument name is required");
       }
@@ -20521,7 +20521,7 @@ var require_router = __commonJS({
       params.push(fn);
       return this;
     };
-    Router4.prototype.handle = function handle(req, res, callback) {
+    Router5.prototype.handle = function handle(req, res, callback) {
       if (!callback) {
         throw new TypeError("argument callback is required");
       }
@@ -20648,7 +20648,7 @@ var require_router = __commonJS({
         }
       }
     };
-    Router4.prototype.use = function use(handler) {
+    Router5.prototype.use = function use(handler) {
       let offset = 0;
       let path = "/";
       if (typeof handler !== "function") {
@@ -20681,7 +20681,7 @@ var require_router = __commonJS({
       }
       return this;
     };
-    Router4.prototype.route = function route(path) {
+    Router5.prototype.route = function route(path) {
       const route2 = new Route(path);
       const layer = new Layer(path, {
         sensitive: this.caseSensitive,
@@ -20696,7 +20696,7 @@ var require_router = __commonJS({
       return route2;
     };
     methods.concat("all").forEach(function(method) {
-      Router4.prototype[method] = function(path) {
+      Router5.prototype[method] = function(path) {
         const route = this.route(path);
         route[method].apply(route, slice.call(arguments, 1));
         return this;
@@ -20879,13 +20879,13 @@ var require_application = __commonJS({
     var compileTrust = require_utils3().compileTrust;
     var resolve = __require("node:path").resolve;
     var once = require_once();
-    var Router4 = require_router();
+    var Router5 = require_router();
     var slice = Array.prototype.slice;
     var flatten = Array.prototype.flat;
     var app2 = exports = module.exports = {};
     var trustProxyDefaultSymbol = "@@symbol:trust_proxy_default";
     app2.init = function init() {
-      var router4 = null;
+      var router5 = null;
       this.cache = /* @__PURE__ */ Object.create(null);
       this.engines = /* @__PURE__ */ Object.create(null);
       this.settings = /* @__PURE__ */ Object.create(null);
@@ -20894,13 +20894,13 @@ var require_application = __commonJS({
         configurable: true,
         enumerable: true,
         get: function getrouter() {
-          if (router4 === null) {
-            router4 = new Router4({
+          if (router5 === null) {
+            router5 = new Router5({
               caseSensitive: this.enabled("case sensitive routing"),
               strict: this.enabled("strict routing")
             });
           }
-          return router4;
+          return router5;
         }
       });
     };
@@ -20971,15 +20971,15 @@ var require_application = __commonJS({
       if (fns.length === 0) {
         throw new TypeError("app.use() requires a middleware function");
       }
-      var router4 = this.router;
+      var router5 = this.router;
       fns.forEach(function(fn2) {
         if (!fn2 || !fn2.handle || !fn2.set) {
-          return router4.use(path, fn2);
+          return router5.use(path, fn2);
         }
         debug(".use app under %s", path);
         fn2.mountpath = path;
         fn2.parent = this;
-        router4.use(path, function mounted_app(req, res, next) {
+        router5.use(path, function mounted_app(req, res, next) {
           var orig = req.app;
           fn2.handle(req, res, function(err) {
             Object.setPrototypeOf(req, orig.request);
@@ -22388,7 +22388,7 @@ var require_send = __commonJS({
     var Stream = __require("stream");
     var util = __require("util");
     var extname = path.extname;
-    var join = path.join;
+    var join2 = path.join;
     var normalize = path.normalize;
     var resolve = path.resolve;
     var sep = path.sep;
@@ -22560,7 +22560,7 @@ var require_send = __commonJS({
           return res;
         }
         parts = path2.split(sep);
-        path2 = normalize(join(root, path2));
+        path2 = normalize(join2(root, path2));
       } else {
         if (UP_PATH_REGEXP.test(path2)) {
           debug('malicious path "%s"', path2);
@@ -22693,7 +22693,7 @@ var require_send = __commonJS({
           if (err) return self.onStatError(err);
           return self.error(404);
         }
-        var p = join(path2, self._index[i]);
+        var p = join2(path2, self._index[i]);
         debug('stat "%s"', p);
         fs.stat(p, function(err2, stat) {
           if (err2) return next(err2);
@@ -23506,7 +23506,7 @@ var require_express = __commonJS({
     var EventEmitter = __require("node:events").EventEmitter;
     var mixin = require_merge_descriptors();
     var proto = require_application();
-    var Router4 = require_router();
+    var Router5 = require_router();
     var req = require_request();
     var res = require_response();
     exports = module.exports = createApplication;
@@ -23528,8 +23528,8 @@ var require_express = __commonJS({
     exports.application = proto;
     exports.request = req;
     exports.response = res;
-    exports.Route = Router4.Route;
-    exports.Router = Router4;
+    exports.Route = Router5.Route;
+    exports.Router = Router5;
     exports.json = bodyParser.json;
     exports.raw = bodyParser.raw;
     exports.static = require_serve_static();
@@ -25817,7 +25817,7 @@ var require_thread_stream = __commonJS({
     var { version } = require_package();
     var { EventEmitter } = __require("events");
     var { Worker } = __require("worker_threads");
-    var { join } = __require("path");
+    var { join: join2 } = __require("path");
     var { pathToFileURL } = __require("url");
     var { wait } = require_wait();
     var {
@@ -25853,7 +25853,7 @@ var require_thread_stream = __commonJS({
     function createWorker(stream, opts) {
       const { filename, workerData } = opts;
       const bundlerOverrides = "__bundlerPathsOverrides" in globalThis ? globalThis.__bundlerPathsOverrides : {};
-      const toExecute = bundlerOverrides["thread-stream-worker"] || join(__dirname, "lib", "worker.js");
+      const toExecute = bundlerOverrides["thread-stream-worker"] || join2(__dirname, "lib", "worker.js");
       const worker = new Worker(toExecute, {
         ...opts.workerOpts,
         trackUnmanagedFds: false,
@@ -26239,7 +26239,7 @@ var require_transport = __commonJS({
     "use strict";
     var { createRequire } = __require("module");
     var getCallers = require_caller();
-    var { join, isAbsolute, sep } = __require("node:path");
+    var { join: join2, isAbsolute, sep } = __require("node:path");
     var sleep = require_atomic_sleep();
     var onExit = require_on_exit_leak_free();
     var ThreadStream = require_thread_stream();
@@ -26302,7 +26302,7 @@ var require_transport = __commonJS({
         throw new Error("only one of target or targets can be specified");
       }
       if (targets) {
-        target = bundlerOverrides["pino-worker"] || join(__dirname, "worker.js");
+        target = bundlerOverrides["pino-worker"] || join2(__dirname, "worker.js");
         options.targets = targets.filter((dest) => dest.target).map((dest) => {
           return {
             ...dest,
@@ -26320,7 +26320,7 @@ var require_transport = __commonJS({
           });
         });
       } else if (pipeline) {
-        target = bundlerOverrides["pino-worker"] || join(__dirname, "worker.js");
+        target = bundlerOverrides["pino-worker"] || join2(__dirname, "worker.js");
         options.pipelines = [pipeline.map((dest) => {
           return {
             ...dest,
@@ -26342,7 +26342,7 @@ var require_transport = __commonJS({
           return origin;
         }
         if (origin === "pino/file") {
-          return join(__dirname, "..", "file.js");
+          return join2(__dirname, "..", "file.js");
         }
         let fixTarget2;
         for (const filePath of callers) {
@@ -27331,7 +27331,7 @@ var require_safe_stable_stringify = __commonJS({
               return circularValue;
             }
             let res = "";
-            let join = ",";
+            let join2 = ",";
             const originalIndentation = indentation;
             if (Array.isArray(value)) {
               if (value.length === 0) {
@@ -27345,7 +27345,7 @@ var require_safe_stable_stringify = __commonJS({
                 indentation += spacer;
                 res += `
 ${indentation}`;
-                join = `,
+                join2 = `,
 ${indentation}`;
               }
               const maximumValuesToStringify = Math.min(value.length, maximumBreadth);
@@ -27353,13 +27353,13 @@ ${indentation}`;
               for (; i < maximumValuesToStringify - 1; i++) {
                 const tmp2 = stringifyFnReplacer(String(i), value, stack, replacer, spacer, indentation);
                 res += tmp2 !== void 0 ? tmp2 : "null";
-                res += join;
+                res += join2;
               }
               const tmp = stringifyFnReplacer(String(i), value, stack, replacer, spacer, indentation);
               res += tmp !== void 0 ? tmp : "null";
               if (value.length - 1 > maximumBreadth) {
                 const removedKeys = value.length - maximumBreadth - 1;
-                res += `${join}"... ${getItemCount(removedKeys)} not stringified"`;
+                res += `${join2}"... ${getItemCount(removedKeys)} not stringified"`;
               }
               if (spacer !== "") {
                 res += `
@@ -27380,7 +27380,7 @@ ${originalIndentation}`;
             let separator = "";
             if (spacer !== "") {
               indentation += spacer;
-              join = `,
+              join2 = `,
 ${indentation}`;
               whitespace = " ";
             }
@@ -27394,13 +27394,13 @@ ${indentation}`;
               const tmp = stringifyFnReplacer(key2, value, stack, replacer, spacer, indentation);
               if (tmp !== void 0) {
                 res += `${separator}${strEscape(key2)}:${whitespace}${tmp}`;
-                separator = join;
+                separator = join2;
               }
             }
             if (keyLength > maximumBreadth) {
               const removedKeys = keyLength - maximumBreadth;
               res += `${separator}"...":${whitespace}"${getItemCount(removedKeys)} not stringified"`;
-              separator = join;
+              separator = join2;
             }
             if (spacer !== "" && separator.length > 1) {
               res = `
@@ -27441,7 +27441,7 @@ ${originalIndentation}`;
             }
             const originalIndentation = indentation;
             let res = "";
-            let join = ",";
+            let join2 = ",";
             if (Array.isArray(value)) {
               if (value.length === 0) {
                 return "[]";
@@ -27454,7 +27454,7 @@ ${originalIndentation}`;
                 indentation += spacer;
                 res += `
 ${indentation}`;
-                join = `,
+                join2 = `,
 ${indentation}`;
               }
               const maximumValuesToStringify = Math.min(value.length, maximumBreadth);
@@ -27462,13 +27462,13 @@ ${indentation}`;
               for (; i < maximumValuesToStringify - 1; i++) {
                 const tmp2 = stringifyArrayReplacer(String(i), value[i], stack, replacer, spacer, indentation);
                 res += tmp2 !== void 0 ? tmp2 : "null";
-                res += join;
+                res += join2;
               }
               const tmp = stringifyArrayReplacer(String(i), value[i], stack, replacer, spacer, indentation);
               res += tmp !== void 0 ? tmp : "null";
               if (value.length - 1 > maximumBreadth) {
                 const removedKeys = value.length - maximumBreadth - 1;
-                res += `${join}"... ${getItemCount(removedKeys)} not stringified"`;
+                res += `${join2}"... ${getItemCount(removedKeys)} not stringified"`;
               }
               if (spacer !== "") {
                 res += `
@@ -27481,7 +27481,7 @@ ${originalIndentation}`;
             let whitespace = "";
             if (spacer !== "") {
               indentation += spacer;
-              join = `,
+              join2 = `,
 ${indentation}`;
               whitespace = " ";
             }
@@ -27490,7 +27490,7 @@ ${indentation}`;
               const tmp = stringifyArrayReplacer(key2, value[key2], stack, replacer, spacer, indentation);
               if (tmp !== void 0) {
                 res += `${separator}${strEscape(key2)}:${whitespace}${tmp}`;
-                separator = join;
+                separator = join2;
               }
             }
             if (spacer !== "" && separator.length > 1) {
@@ -27548,20 +27548,20 @@ ${originalIndentation}`;
               indentation += spacer;
               let res2 = `
 ${indentation}`;
-              const join2 = `,
+              const join3 = `,
 ${indentation}`;
               const maximumValuesToStringify = Math.min(value.length, maximumBreadth);
               let i = 0;
               for (; i < maximumValuesToStringify - 1; i++) {
                 const tmp2 = stringifyIndent(String(i), value[i], stack, spacer, indentation);
                 res2 += tmp2 !== void 0 ? tmp2 : "null";
-                res2 += join2;
+                res2 += join3;
               }
               const tmp = stringifyIndent(String(i), value[i], stack, spacer, indentation);
               res2 += tmp !== void 0 ? tmp : "null";
               if (value.length - 1 > maximumBreadth) {
                 const removedKeys = value.length - maximumBreadth - 1;
-                res2 += `${join2}"... ${getItemCount(removedKeys)} not stringified"`;
+                res2 += `${join3}"... ${getItemCount(removedKeys)} not stringified"`;
               }
               res2 += `
 ${originalIndentation}`;
@@ -27577,16 +27577,16 @@ ${originalIndentation}`;
               return '"[Object]"';
             }
             indentation += spacer;
-            const join = `,
+            const join2 = `,
 ${indentation}`;
             let res = "";
             let separator = "";
             let maximumPropertiesToStringify = Math.min(keyLength, maximumBreadth);
             if (isTypedArrayWithEntries(value)) {
-              res += stringifyTypedArray(value, join, maximumBreadth);
+              res += stringifyTypedArray(value, join2, maximumBreadth);
               keys = keys.slice(value.length);
               maximumPropertiesToStringify -= value.length;
-              separator = join;
+              separator = join2;
             }
             if (deterministic) {
               keys = sort(keys, comparator);
@@ -27597,13 +27597,13 @@ ${indentation}`;
               const tmp = stringifyIndent(key2, value[key2], stack, spacer, indentation);
               if (tmp !== void 0) {
                 res += `${separator}${strEscape(key2)}: ${tmp}`;
-                separator = join;
+                separator = join2;
               }
             }
             if (keyLength > maximumBreadth) {
               const removedKeys = keyLength - maximumBreadth;
               res += `${separator}"...": "${getItemCount(removedKeys)} not stringified"`;
-              separator = join;
+              separator = join2;
             }
             if (separator !== "") {
               res = `
@@ -28388,12 +28388,12 @@ var require_logger = __commonJS({
 });
 
 // src/app.ts
-var import_express4 = __toESM(require_express2(), 1);
+var import_express5 = __toESM(require_express2(), 1);
 var import_cors = __toESM(require_lib3(), 1);
 var import_pino_http = __toESM(require_logger(), 1);
 
 // src/routes/index.ts
-var import_express3 = __toESM(require_express2(), 1);
+var import_express4 = __toESM(require_express2(), 1);
 
 // src/routes/health.ts
 var import_express = __toESM(require_express2(), 1);
@@ -28471,11 +28471,214 @@ router2.post("/contact", async (req, res) => {
 });
 var contact_default = router2;
 
-// src/routes/index.ts
+// src/routes/admin.ts
+var import_express3 = __toESM(require_express2(), 1);
+import { createHmac, randomUUID } from "crypto";
+
+// src/lib/storage.ts
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+var __dirname2 = dirname(fileURLToPath(import.meta.url));
+var DATA_DIR = join(__dirname2, "../../data");
+var PROJECTS_FILE = join(DATA_DIR, "projects.json");
+var SEED = [
+  { id: "aura-brand", title: "Aura Collective", tagline: "A brand identity built to dominate every room it enters.", overview: "Aura Collective is a lifestyle brand launching across India. They needed a complete brand identity system plus a go-to-market digital marketing strategy.", challenge: "The founders had zero brand presence and needed a recognizable identity fast \u2014 before a national launch at a major trade fair.", solution: "We created a bold, modern brand system including logo, color palette, typography, and brand guidelines, then ran targeted Instagram and Google ad campaigns reaching over 200k users in month 1.", serviceId: "branding", subServiceId: "identity", category: "Creative Branding & Marketing", subCategory: "Brand Identity", tags: ["Brand Identity", "Logo Design", "Typography", "Color Systems"], image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80", coverImage: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1600&q=90", results: [{ label: "Reach in Month 1", value: "200k+" }, { label: "Brand Recall", value: "84%" }, { label: "Ad ROAS", value: "4.2x" }, { label: "Assets Delivered", value: "80+" }], services: ["Brand Identity", "Logo Design", "Digital Marketing"], year: "2024", duration: "8 weeks", status: "published", featured: true, createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" },
+  { id: "neon-brand", title: "Neon Dynamics", tagline: "A brand that charges up every room it enters.", overview: "Neon Dynamics needed a complete brand identity, launch video, and digital marketing strategy for a major trade show.", challenge: "Zero brand recognition with a major trade show deadline in 6 weeks.", solution: "We built a high-contrast visual system with electric neon colors, produced a 90-second launch film, and ran a 2-week awareness campaign on LinkedIn and Instagram.", serviceId: "branding", subServiceId: "marketing", category: "Creative Branding & Marketing", subCategory: "Marketing Creatives", tags: ["Brand Identity", "Marketing", "Video", "Product Launch"], image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80", coverImage: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1600&q=90", results: [{ label: "Trade Show Leads", value: "340+" }, { label: "Launch Film Views", value: "95k" }, { label: "LinkedIn Impressions", value: "180k" }, { label: "Turnaround", value: "6 weeks" }], services: ["Brand Identity", "Marketing Creatives", "Social Media"], year: "2024", duration: "6 weeks", status: "published", featured: false, createdAt: "2024-02-01T00:00:00Z", updatedAt: "2024-02-01T00:00:00Z" },
+  { id: "honey-packaging", title: "Golden Hive Honey", tagline: "Premium organic honey \u2014 packaged to feel as pure as it tastes.", overview: "Golden Hive needed packaging that would stand out on shelf and communicate their natural, artisan story.", challenge: "The market is flooded with look-alike honey brands \u2014 they needed to break through with minimal elements.", solution: "We designed a hexagonal label system with hand-lettered typography, warm gold tones, and botanical illustration.", serviceId: "branding", subServiceId: "packaging", category: "Creative Branding & Marketing", subCategory: "Product Packaging Design", tags: ["Packaging Design", "Label Design", "FMCG"], image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&q=80", coverImage: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=1600&q=90", results: [{ label: "Retail Listings", value: "12" }, { label: "DTC Sales Uplift", value: "+165%" }, { label: "Social Shares", value: "4,800+" }, { label: "Label Variants", value: "6" }], services: ["Packaging Design", "Label Design", "Logo Design"], year: "2024", duration: "4 weeks", status: "published", featured: false, createdAt: "2024-03-01T00:00:00Z", updatedAt: "2024-03-01T00:00:00Z" },
+  { id: "skincare-social", title: "Velvet Skin Co.", tagline: "90-day Instagram transformation \u2014 from invisible to iconic.", overview: "Complete social content overhaul for a D2C skincare brand with zero engagement.", challenge: "Inconsistent content with no visual language and 0.3% engagement rate.", solution: "Created a cohesive Instagram design system with consistent grid layout, branded templates, and 3-month content calendar.", serviceId: "branding", subServiceId: "social", category: "Creative Branding & Marketing", subCategory: "Social Media Design", tags: ["Social Media Design", "Instagram", "Content Strategy", "Beauty"], image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&q=80", coverImage: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1600&q=90", results: [{ label: "Engagement Rate", value: "4.7%" }, { label: "Follower Growth", value: "+12,400" }, { label: "Profile Link Clicks", value: "+380%" }, { label: "Creatives Delivered", value: "120+" }], services: ["Social Media Design", "Content Strategy", "Brand Templates"], year: "2025", duration: "3 months", status: "published", featured: true, createdAt: "2025-01-01T00:00:00Z", updatedAt: "2025-01-01T00:00:00Z" },
+  { id: "lumina-ecommerce", title: "Lumina Lifestyle", tagline: "Elegant by design. Powerful by default.", overview: "Premium wellness brand DTC e-commerce store designed and developed from scratch.", challenge: "Strong product but no digital presence \u2014 needed luxury feel, fast mobile load, and high conversions before Black Friday.", solution: "Mobile-first UI with warm ivory tones, custom Shopify storefront with optimized checkout flows, CRM and email automation.", serviceId: "web", subServiceId: "ecommerce", category: "Web & App Development", subCategory: "E-commerce Stores", tags: ["E-Commerce", "Shopify", "UI/UX Design", "Mobile-First"], image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80", coverImage: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&q=90", results: [{ label: "Launch Day Revenue", value: "\u20B92.1L" }, { label: "Mobile Conversion", value: "4.8%" }, { label: "Session Duration", value: "3m 42s" }, { label: "Cart Abandonment", value: "-38%" }], services: ["E-commerce Development", "UI/UX Design", "Shopify", "CRM Integration"], year: "2023", duration: "10 weeks", status: "published", featured: true, createdAt: "2023-10-01T00:00:00Z", updatedAt: "2023-10-01T00:00:00Z" },
+  { id: "saas-dashboard", title: "FlowMetrics AI Dashboard", tagline: "Complex analytics. Stunningly simple interface.", overview: "Custom B2B SaaS analytics dashboard with real-time data visualization and multi-tenant architecture.", challenge: "Excel-based reporting was blocking enterprise sales \u2014 prospects wanted a live dashboard before signing.", solution: "Fully custom React dashboard with real-time charts, role-based access, CSV export, and white-label option.", serviceId: "web", subServiceId: "webapp", category: "Web & App Development", subCategory: "Custom Web Apps", tags: ["Web App", "SaaS", "Dashboard", "React", "Data Viz"], image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80", coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=90", results: [{ label: "Enterprise Deals", value: "8" }, { label: "Load Time (P95)", value: "< 800ms" }, { label: "Onboarding Drop-off", value: "-62%" }, { label: "Features Shipped", value: "34" }], services: ["Custom Web App", "UI/UX Design", "React", "Serverless Backend"], year: "2024", duration: "12 weeks", status: "published", featured: true, createdAt: "2024-04-01T00:00:00Z", updatedAt: "2024-04-01T00:00:00Z" },
+  { id: "hotel-website", title: "Maison Blanc Hotel", tagline: "A luxury hotel website that books itself.", overview: "Boutique luxury hotel website with direct booking engine to cut OTA commissions.", challenge: "OTA platforms taking 18\u201322% commission on every booking with no direct digital channel.", solution: "Luxury full-screen website with integrated booking engine, virtual room tour, and automated email sequences.", serviceId: "web", subServiceId: "business", category: "Web & App Development", subCategory: "Business Websites", tags: ["Business Website", "Hotel", "Booking Integration", "Luxury UI"], image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80", coverImage: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=90", results: [{ label: "Direct Bookings", value: "41%" }, { label: "Commission Saved", value: "\u20B91.8L/mo" }, { label: "Email List", value: "2,100+" }, { label: "Bounce Rate", value: "-44%" }], services: ["Business Website", "Booking Integration", "UI/UX Design"], year: "2024", duration: "6 weeks", status: "published", featured: false, createdAt: "2024-05-01T00:00:00Z", updatedAt: "2024-05-01T00:00:00Z" },
+  { id: "pulse-video", title: "Pulse Energy", tagline: "Content that converts \u2014 at the speed of light.", overview: "Complete video content pipeline for a sustainable energy startup \u2014 product explainers, social ads, long-form YouTube.", challenge: "Raw footage but no editing team, no visual style, and a product launch deadline in 8 weeks.", solution: "Signature motion-graphic style using brand colors, 14 videos across formats from 15-second reels to 6-minute YouTube documentary.", serviceId: "video", subServiceId: "longform", category: "Video Production & Editing", subCategory: "Long-form Video Editing", tags: ["Motion Graphics", "YouTube", "Brand Film", "Documentary"], image: "https://images.unsplash.com/photo-1535016120720-40c746a5024b?w=800&q=80", coverImage: "https://images.unsplash.com/photo-1535016120720-40c746a5024b?w=1600&q=90", results: [{ label: "Total Views (30 days)", value: "2.4M" }, { label: "Watch Time Increase", value: "+210%" }, { label: "Subscriber Growth", value: "+8,300" }, { label: "Videos Delivered", value: "14" }], services: ["Long-form Editing", "Motion Graphics", "Color Grading"], year: "2024", duration: "8 weeks", status: "published", featured: true, createdAt: "2024-06-01T00:00:00Z", updatedAt: "2024-06-01T00:00:00Z" },
+  { id: "realestate-reel", title: "Prestige Realty Reels", tagline: "Reels that sell properties before showings.", overview: "Cinematic Instagram reels for a premium real estate agency targeting high-net-worth buyers.", challenge: "Competitors were using cinematic reels to sell \u20B92Cr+ properties while Prestige got zero traction.", solution: "Cinematic reel format with drone footage, color grading for warmth, trending audio, and 3 reels per week on retainer.", serviceId: "video", subServiceId: "reels", category: "Video Production & Editing", subCategory: "Reels Editing", tags: ["Reels", "Real Estate", "Instagram", "High-retention"], image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80", coverImage: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1600&q=90", results: [{ label: "Reach per Reel", value: "85k+" }, { label: "Inquiry Calls/week", value: "+28" }, { label: "Views Booked", value: "+190%" }, { label: "Reels per Month", value: "12" }], services: ["Reels Editing", "Color Grading", "Motion Text"], year: "2024", duration: "Ongoing", status: "published", featured: false, createdAt: "2024-07-01T00:00:00Z", updatedAt: "2024-07-01T00:00:00Z" },
+  { id: "server-migration", title: "CloudNova Enterprise Migration", tagline: "Zero downtime. Zero data loss. Done.", overview: "Full infrastructure migration from shared hosting to AWS for a logistics SaaS with 3,000+ users.", challenge: "Outdated hardware with no backup strategy \u2014 migration had to happen during business hours with live users.", solution: "Blue-green deployment architecture, AWS DMS live replication, auto-scaling groups, 4-minute maintenance window cutover.", serviceId: "infrastructure", subServiceId: "server", category: "Digital Infrastructure", subCategory: "Server Management", tags: ["Server Migration", "AWS", "Zero Downtime", "DevOps"], image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80", coverImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1600&q=90", results: [{ label: "Downtime", value: "0 min" }, { label: "Response Time", value: "-68%" }, { label: "Infra Cost", value: "-35%" }, { label: "Uptime", value: "99.98%" }], services: ["Server Management", "AWS Migration", "Database Management"], year: "2024", duration: "4 weeks", status: "published", featured: false, createdAt: "2024-08-01T00:00:00Z", updatedAt: "2024-08-01T00:00:00Z" },
+  { id: "vertex-ai-automation", title: "Vertex Ops", tagline: "Turning 40-hour workweeks into automated pipelines.", overview: "Full AI-powered process automation for a mid-sized logistics company drowning in manual tasks.", challenge: "Team spending 60% of time on repetitive tasks \u2014 copy-pasting data, generating reports, responding to standard queries.", solution: "Automated pipelines using AI tools, custom GPT assistants for client queries, automated data sync, reports, and invoice generation.", serviceId: "ai", subServiceId: "workflow", category: "AI Automation Solutions", subCategory: "Workflow Automation", tags: ["AI Integration", "Workflow Automation", "n8n", "GPT"], image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80", coverImage: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=90", results: [{ label: "Hours Saved/Week", value: "32 hrs" }, { label: "Report Time", value: "-95%" }, { label: "Response Time", value: "< 2 min" }, { label: "ROI in 3 Months", value: "6.1x" }], services: ["Workflow Automation", "AI Integration", "Custom GPT"], year: "2024", duration: "6 weeks", status: "published", featured: true, createdAt: "2024-09-01T00:00:00Z", updatedAt: "2024-09-01T00:00:00Z" },
+  { id: "ai-chatbot", title: "SwiftServe AI Chatbot", tagline: "24/7 support. Zero extra headcount.", overview: "Custom AI chatbot for a D2C e-commerce brand handling 80,000+ monthly orders to scale support without hiring.", challenge: "1,200+ tickets/day during sales, 48-hour response times, declining customer satisfaction.", solution: "Custom AI chatbot trained on product catalog, FAQ, return policy, and order data \u2014 integrated with Shopify and Zendesk.", serviceId: "ai", subServiceId: "chatbots", category: "AI Automation Solutions", subCategory: "AI Chatbots", tags: ["AI Chatbot", "Customer Support", "Lead Capture", "NLP"], image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80", coverImage: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1600&q=90", results: [{ label: "Tickets Resolved", value: "78%" }, { label: "Avg Response", value: "< 30 sec" }, { label: "Team Hires", value: "0" }, { label: "CSAT Score", value: "4.7/5" }], services: ["AI Chatbot", "Shopify Integration", "NLP Training"], year: "2024", duration: "5 weeks", status: "published", featured: false, createdAt: "2024-10-01T00:00:00Z", updatedAt: "2024-10-01T00:00:00Z" },
+  { id: "design-internship", title: "Design Internship Cohort 01", tagline: "12 students. 8 weeks. Industry-ready portfolios.", overview: "Structured design internship program for 12 aspiring designers covering UI/UX, branding, and real client delivery.", challenge: "Graduates have academic projects but no client-facing experience \u2014 agencies won't hire without portfolios.", solution: "Program structured around live client briefs, weekly critiques, tool masterclasses, and 1-on-1 mentorship.", serviceId: "mentorship", subServiceId: "internship", category: "Mentorship & Career Guidance", subCategory: "Internship Programs", tags: ["Internship", "UI/UX Design", "Branding", "Training"], image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80", coverImage: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1600&q=90", results: [{ label: "Interns Trained", value: "12" }, { label: "Placed", value: "9/12" }, { label: "Avg Stipend", value: "\u20B918k/mo" }, { label: "Projects Shipped", value: "28" }], services: ["Internship Program", "Design Training", "Portfolio Building"], year: "2024", duration: "8 weeks", status: "published", featured: false, createdAt: "2024-11-01T00:00:00Z", updatedAt: "2024-11-01T00:00:00Z" }
+];
+function ensureDataDir() {
+  if (!existsSync(DATA_DIR)) {
+    mkdirSync(DATA_DIR, { recursive: true });
+  }
+}
+function loadProjects() {
+  ensureDataDir();
+  if (!existsSync(PROJECTS_FILE)) {
+    saveProjects(SEED);
+    return SEED;
+  }
+  try {
+    return JSON.parse(readFileSync(PROJECTS_FILE, "utf-8"));
+  } catch {
+    return SEED;
+  }
+}
+function saveProjects(projects) {
+  ensureDataDir();
+  writeFileSync(PROJECTS_FILE, JSON.stringify(projects, null, 2), "utf-8");
+}
+function getProjects() {
+  return loadProjects();
+}
+function getPublishedProjects() {
+  return loadProjects().filter((p) => p.status === "published");
+}
+function getProjectById(id) {
+  return loadProjects().find((p) => p.id === id);
+}
+function createProject(data) {
+  const projects = loadProjects();
+  const now = (/* @__PURE__ */ new Date()).toISOString();
+  const project = { ...data, createdAt: now, updatedAt: now };
+  projects.unshift(project);
+  saveProjects(projects);
+  return project;
+}
+function updateProject(id, data) {
+  const projects = loadProjects();
+  const idx = projects.findIndex((p) => p.id === id);
+  if (idx === -1) return null;
+  projects[idx] = { ...projects[idx], ...data, updatedAt: (/* @__PURE__ */ new Date()).toISOString() };
+  saveProjects(projects);
+  return projects[idx];
+}
+function deleteProject(id) {
+  const projects = loadProjects();
+  const idx = projects.findIndex((p) => p.id === id);
+  if (idx === -1) return false;
+  projects.splice(idx, 1);
+  saveProjects(projects);
+  return true;
+}
+
+// src/routes/admin.ts
 var router3 = (0, import_express3.Router)();
-router3.use(health_default);
-router3.use(contact_default);
-var routes_default = router3;
+var ADMIN_PASSWORD = process.env["ADMIN_PASSWORD"] || "techtitans2024";
+var SECRET = process.env["ADMIN_SECRET"] || "tt_secret_key_2024";
+function makeToken(password) {
+  return createHmac("sha256", SECRET).update(password).digest("hex");
+}
+var VALID_TOKEN = makeToken(ADMIN_PASSWORD);
+function requireAdmin(req, res, next) {
+  const auth = req.headers["authorization"];
+  if (!auth || !auth.startsWith("Bearer ")) {
+    res.status(401).json({ error: "Unauthorized" });
+    return;
+  }
+  const token = auth.slice(7);
+  if (token !== VALID_TOKEN) {
+    res.status(401).json({ error: "Invalid token" });
+    return;
+  }
+  next();
+}
+router3.get("/projects", (_req, res) => {
+  res.json(getPublishedProjects());
+});
+router3.get("/projects/:id", (req, res) => {
+  const project = getProjectById(req.params.id);
+  if (!project || project.status !== "published") {
+    res.status(404).json({ error: "Not found" });
+    return;
+  }
+  res.json(project);
+});
+router3.post("/admin/login", (req, res) => {
+  const { password } = req.body;
+  if (!password || password !== ADMIN_PASSWORD) {
+    res.status(401).json({ error: "Invalid password" });
+    return;
+  }
+  res.json({ token: VALID_TOKEN });
+});
+router3.get("/admin/projects", requireAdmin, (_req, res) => {
+  res.json(getProjects());
+});
+router3.get("/admin/projects/:id", requireAdmin, (req, res) => {
+  const project = getProjectById(req.params.id);
+  if (!project) {
+    res.status(404).json({ error: "Not found" });
+    return;
+  }
+  res.json(project);
+});
+router3.post("/admin/projects", requireAdmin, (req, res) => {
+  const body = req.body;
+  const title = body.title?.trim();
+  if (!title) {
+    res.status(400).json({ error: "Title is required" });
+    return;
+  }
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const id = `${slug}-${randomUUID().slice(0, 6)}`;
+  const project = createProject({
+    id,
+    title,
+    tagline: body.tagline || "",
+    overview: body.overview || "",
+    challenge: body.challenge || "",
+    solution: body.solution || "",
+    serviceId: body.serviceId || "branding",
+    subServiceId: body.subServiceId || "",
+    category: body.category || "",
+    subCategory: body.subCategory || "",
+    tags: body.tags || [],
+    image: body.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80",
+    coverImage: body.coverImage || body.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&q=90",
+    results: body.results || [],
+    services: body.services || [],
+    year: body.year || (/* @__PURE__ */ new Date()).getFullYear().toString(),
+    duration: body.duration || "",
+    status: body.status || "draft",
+    featured: body.featured ?? false
+  });
+  res.status(201).json(project);
+});
+router3.put("/admin/projects/:id", requireAdmin, (req, res) => {
+  const body = req.body;
+  const updated = updateProject(req.params.id, body);
+  if (!updated) {
+    res.status(404).json({ error: "Not found" });
+    return;
+  }
+  res.json(updated);
+});
+router3.patch("/admin/projects/:id/featured", requireAdmin, (req, res) => {
+  const project = getProjectById(req.params.id);
+  if (!project) {
+    res.status(404).json({ error: "Not found" });
+    return;
+  }
+  const updated = updateProject(req.params.id, { featured: !project.featured });
+  res.json(updated);
+});
+router3.patch("/admin/projects/:id/publish", requireAdmin, (req, res) => {
+  const project = getProjectById(req.params.id);
+  if (!project) {
+    res.status(404).json({ error: "Not found" });
+    return;
+  }
+  const next = project.status === "published" ? "draft" : "published";
+  const updated = updateProject(req.params.id, { status: next });
+  res.json(updated);
+});
+router3.delete("/admin/projects/:id", requireAdmin, (req, res) => {
+  const ok = deleteProject(req.params.id);
+  if (!ok) {
+    res.status(404).json({ error: "Not found" });
+    return;
+  }
+  res.json({ success: true });
+});
+var admin_default = router3;
+
+// src/routes/index.ts
+var router4 = (0, import_express4.Router)();
+router4.use(health_default);
+router4.use(contact_default);
+router4.use(admin_default);
+var routes_default = router4;
 
 // src/lib/logger.ts
 var import_pino = __toESM(require_pino(), 1);
@@ -28496,7 +28699,7 @@ var logger = (0, import_pino.default)({
 });
 
 // src/app.ts
-var app = (0, import_express4.default)();
+var app = (0, import_express5.default)();
 app.use(
   (0, import_pino_http.default)({
     logger,
@@ -28517,8 +28720,8 @@ app.use(
   })
 );
 app.use((0, import_cors.default)());
-app.use(import_express4.default.json());
-app.use(import_express4.default.urlencoded({ extended: true }));
+app.use(import_express5.default.json());
+app.use(import_express5.default.urlencoded({ extended: true }));
 app.use("/api", routes_default);
 var app_default = app;
 

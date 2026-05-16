@@ -1,16 +1,25 @@
 import { useLocation, useParams } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Clock, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, ArrowUpRight, Loader2 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { projects } from "@/data/projects";
+import { useProjects, useProject } from "@/hooks/useProjects";
 
 export default function CaseStudy() {
   const params = useParams<{ id: string }>();
   const [, navigate] = useLocation();
 
-  const project = projects.find((p) => p.id === params.id);
-  const otherProjects = projects.filter((p) => p.id !== params.id).slice(0, 2);
+  const { data: project, isLoading } = useProject(params.id);
+  const { data: allProjects = [] } = useProjects();
+  const otherProjects = allProjects.filter((p: any) => p.id !== params.id).slice(0, 2);
+
+  if (isLoading) {
+    return (
+      <main className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </main>
+    );
+  }
 
   if (!project) {
     return (
