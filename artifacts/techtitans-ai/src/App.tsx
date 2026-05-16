@@ -2,6 +2,7 @@ import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { CinematicBackground } from "@/components/CinematicBackground";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import PortfolioPage from "@/pages/PortfolioPage";
@@ -9,6 +10,7 @@ import CaseStudy from "@/pages/CaseStudy";
 import AboutUs from "@/pages/AboutUs";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsConditions from "@/pages/TermsConditions";
+import ServicePage from "@/pages/ServicePage";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +23,7 @@ function Router() {
       <Route path="/about" component={AboutUs} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/terms-conditions" component={TermsConditions} />
+      <Route path="/services/:id" component={ServicePage} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -31,6 +34,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+          <CinematicBackground />
           <Router />
         </WouterRouter>
         <Toaster />

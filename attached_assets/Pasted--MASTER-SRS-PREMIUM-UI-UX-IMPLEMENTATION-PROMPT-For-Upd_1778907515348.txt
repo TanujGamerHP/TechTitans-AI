@@ -1,0 +1,613 @@
+# MASTER SRS + PREMIUM UI/UX IMPLEMENTATION PROMPT
+
+*(For Updating Existing Website — Services + Portfolio Architecture + Cinematic Premium Experience)*
+
+---
+
+# PROJECT GOAL
+
+Transform the existing portfolio website into a **premium cinematic digital agency experience** with:
+
+* modern luxury UI
+* advanced motion design
+* connected services + portfolio architecture
+* premium hover interactions
+* smooth page transitions
+* floating cinematic background elements
+* futuristic visual identity
+* high-end agency feel (NOT template style)
+
+The final experience should feel like a mix of:
+
+* award-winning agency websites
+* futuristic SaaS design
+* cinematic portfolio showcase
+* interactive creative studio
+
+The website must feel:
+
+* immersive
+* alive
+* smooth
+* premium
+* futuristic
+* high-performance
+
+---
+
+# EXISTING DESIGN LANGUAGE
+
+Maintain and enhance the existing visual identity:
+
+### Current Theme
+
+* Dark navy / deep black background
+* Electric blue gradients
+* Cyan accents
+* Subtle glassmorphism
+* Premium neon glow
+* Clean typography
+* Minimal but cinematic layout
+
+### IMPORTANT
+
+DO NOT:
+
+* convert into colorful template UI
+* use random gradients everywhere
+* use cartoonish icons
+* use generic startup visuals
+
+Everything must feel:
+
+* intentional
+* elegant
+* high-end
+* cinematic
+
+---
+
+# NEW WEBSITE STRUCTURE
+
+---
+
+# 1. HOME PAGE
+
+## HERO SECTION
+
+Keep current hero structure but enhance dramatically.
+
+### Add:
+
+* cinematic background atmosphere
+* infinite floating particles
+* slowly moving space elements
+* depth-based motion layers
+* ambient glow effects
+* subtle moving grid/noise
+* animated orb lighting
+* smooth cursor-reactive lighting
+
+### Background Animation Style
+
+The background should feel like:
+
+* futuristic space environment
+* premium tech lab
+* digital universe
+* AI-powered ecosystem
+
+### Infinite Moving Elements
+
+Continuously animate:
+
+* tiny glowing particles
+* floating lines
+* blurred energy orbs
+* moving stars
+* soft grid movement
+* cinematic fog gradients
+* ambient glow pulses
+
+Motion must be:
+
+* extremely slow
+* elegant
+* non-distracting
+* buttery smooth
+
+NO cheap particles.
+
+Everything should feel luxury-level.
+
+---
+
+# HERO TEXT ANIMATIONS
+
+Main heading must animate beautifully.
+
+Example:
+“We Build Digital Excellence”
+
+### Animation Requirements
+
+* staggered text reveal
+* word-by-word entrance
+* glow transition
+* smooth opacity fade
+* subtle upward motion
+* cinematic timing
+
+### Mouse Interaction
+
+* slight parallax movement
+* glow reacts to cursor
+* depth illusion
+
+---
+
+# PREMIUM BUTTON ANIMATIONS
+
+Buttons should feel tactile and futuristic.
+
+### Add:
+
+* magnetic hover effect
+* glow bloom
+* animated border light
+* smooth scaling
+* soft particle trail on hover
+
+---
+
+# NAVBAR
+
+### Add:
+
+* glassmorphism navbar
+* active section glow
+* smooth scroll transitions
+* animated underline
+* premium blur effect on scroll
+
+---
+
+# 2. SERVICES SECTION (MAIN UPDATE)
+
+This section exists on homepage.
+
+When clicking “Services” in navbar:
+→ smooth scroll to services section.
+
+---
+
+# SERVICES SECTION LAYOUT
+
+Create 6 premium service cards.
+
+Each card:
+
+* fully clickable
+* cinematic hover animation
+* glowing borders
+* floating icon animation
+* layered depth shadows
+* smooth micro-interactions
+
+### IMPORTANT
+
+Use ORIGINAL PROFESSIONAL ICONS.
+NOT generic template icons.
+
+Icons should feel:
+
+* minimal
+* futuristic
+* premium
+* tech-focused
+
+---
+
+# SERVICES LIST
+
+---
+
+## 1. Creative Branding & Marketing
+
+### Sub-services
+
+* Logo Design
+* Social Media Design
+* Product Packaging Design
+* Label Design
+* Banner Design
+* Editorial Design
+* Brand Identity
+* Marketing Creatives
+
+### Editorial Design Includes
+
+* E-book Design
+* Digital Magazine Design
+* PDF Presentation Design
+
+---
+
+## 2. Web & App Development
+
+### Sub-services
+
+* Business Websites
+* Portfolio Websites
+* Landing Pages
+* E-commerce Stores
+* Custom Web Apps
+* Mobile UI Design
+
+---
+
+## 3. Video Production & Editing
+
+### Sub-services
+
+* Reels Editing
+* Long-form Video Editing
+* Motion Graphics
+* Promotional Videos
+* Cinematic Editing
+
+---
+
+## 4. Digital Infrastructure & Maintenance
+
+### Sub-services
+
+* Server Management
+* Domain Setup
+* Website Maintenance
+* Hosting Support
+* Security Monitoring
+* Performance Optimization
+
+---
+
+## 5. Mentorship & Career Guidance
+
+### Sub-services
+
+* Internship Programs
+* Placement Guidance
+* Personalized Learning Sessions
+* Portfolio Reviews
+* Career Mentorship
+
+---
+
+## 6. AI Automation Solutions
+
+### Sub-services
+
+* Workflow Automation
+* AI Chatbots
+* AI Assistants
+* Lead Automation
+* CRM Automation
+* Business Process Automation
+
+---
+
+# SERVICES INTERACTION FLOW
+
+---
+
+# CLICKING MAIN SERVICE CARD
+
+Example:
+User clicks:
+“Creative Branding & Marketing”
+
+→ Opens dedicated service page.
+
+---
+
+# SERVICE PAGE STRUCTURE
+
+Each service page must include:
+
+---
+
+## 1. HERO SECTION
+
+Large cinematic title.
+
+Example:
+“Creative Branding That Makes Businesses Stand Out.”
+
+Add:
+
+* animated showcase visuals
+* premium gradients
+* floating assets
+* subtle animated mockups
+
+---
+
+## 2. SUB-SERVICE GRID
+
+Each sub-service displayed as premium card.
+
+Example:
+Packaging Design
+
+Each sub-service card contains:
+
+* title
+* animated thumbnail
+* short description
+* hover motion
+* glow effects
+
+---
+
+## 3. FEATURED PROJECTS
+
+Every sub-service shows:
+
+* 1 featured premium project
+* cinematic preview
+* hover reveal
+* motion transitions
+
+---
+
+## 4. CTA SECTION
+
+High-end call-to-action section with:
+
+* animated glow
+* cinematic lighting
+* premium interaction
+
+---
+
+# SUB-SERVICE PAGE FLOW
+
+Example:
+Branding
+→ Packaging Design
+
+Opens dedicated portfolio collection page.
+
+---
+
+# SUB-SERVICE PORTFOLIO PAGE
+
+Must contain:
+
+* project grid
+* smooth filtering
+* hover previews
+* cinematic transitions
+* masonry or premium grid layout
+* category tags
+* animated reveal on scroll
+
+---
+
+# SINGLE PROJECT PAGE (CASE STUDY)
+
+Every project page must feel world-class.
+
+Include:
+
+---
+
+## PROJECT HERO
+
+* fullscreen mockup
+* cinematic reveal
+* animated lighting
+
+---
+
+## PROJECT OVERVIEW
+
+* project goal
+* challenge
+* approach
+* final solution
+
+---
+
+## VISUAL GALLERY
+
+* immersive showcase
+* smooth transitions
+* hover zoom
+* cinematic image reveals
+
+---
+
+## RESULTS SECTION
+
+* client impact
+* design transformation
+* performance highlights
+
+---
+
+# DEFAULT DEMO PROJECTS
+
+Add temporary premium showcase projects.
+
+Examples:
+
+### Branding
+
+* Organic Honey Packaging
+* Luxury Coffee Branding
+* Modern Fitness Supplement Label
+* Minimal Skincare Packaging
+
+### Web
+
+* AI SaaS Dashboard
+* Luxury Hotel Website
+* Creative Portfolio
+* Startup Landing Page
+
+### Video
+
+* Real Estate Reel
+* Fitness Promo Edit
+* YouTube Documentary Edit
+
+### AI
+
+* AI Lead Generation System
+* AI Chatbot Dashboard
+
+---
+
+# ANIMATION SYSTEM (VERY IMPORTANT)
+
+This is the MOST IMPORTANT PART.
+
+The site must feel:
+
+* alive
+* cinematic
+* futuristic
+* interactive
+
+NOT static.
+
+---
+
+# REQUIRED ANIMATIONS
+
+---
+
+## GLOBAL BACKGROUND MOTION
+
+Infinite movement.
+
+Examples:
+
+* floating particles
+* glowing dots
+* slow moving lines
+* atmospheric light beams
+* animated nebula gradients
+
+---
+
+## SCROLL ANIMATIONS
+
+Every section reveals smoothly.
+
+Use:
+
+* staggered reveals
+* opacity transitions
+* blur-to-clear effects
+* smooth transforms
+
+---
+
+## HOVER INTERACTIONS
+
+Every important element:
+
+* responds to hover
+* slight lift effect
+* glow intensifies
+* depth shadow expands
+
+---
+
+## PAGE TRANSITIONS
+
+Between pages:
+
+* smooth fade
+* cinematic transition
+* no abrupt loading
+
+---
+
+## CARD ANIMATIONS
+
+Service/project cards:
+
+* subtle floating idle animation
+* smooth hover tilt
+* animated border glow
+* cursor-reactive lighting
+
+---
+
+# PERFORMANCE REQUIREMENTS
+
+Animations must remain:
+
+* smooth
+* optimized
+* GPU accelerated
+
+Avoid:
+
+* lag
+* heavy particle overload
+* unnecessary 3D rendering
+
+Premium feel comes from:
+
+* timing
+* smoothness
+* restraint
+
+NOT chaos.
+
+---
+
+# UI STYLE REFERENCES
+
+Visual inspiration:
+
+* Awwwards websites
+* futuristic SaaS landing pages
+* premium creative agencies
+* cinematic Apple-style motion
+* minimal luxury UI
+
+---
+
+# FINAL EXPERIENCE GOAL
+
+The website should make visitors feel:
+
+> “This is not a freelancer portfolio.”
+
+It should feel like:
+
+* elite digital studio
+* premium creative-tech agency
+* futuristic design company
+* cinematic innovation brand
+
+The experience must instantly communicate:
+
+* creativity
+* technical capability
+* modern branding expertise
+* premium execution quality
+* futuristic identity
+
+WITHOUT feeling:
+
+* cluttered
+* template-based
+* over-designed
+* childish
+* generic.
