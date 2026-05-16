@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  type ReactNode,
+} from "react";
 import { api } from "@/lib/api";
 
 interface AdminAuthCtx {
@@ -7,14 +13,16 @@ interface AdminAuthCtx {
   logout: () => void;
 }
 
-const Ctx = createContext<AdminAuthCtx | null>(null);
+const AdminAuthContext = createContext<AdminAuthCtx | null>(null);
 
 export function AdminAuthProvider({ children }: { children: ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return !!localStorage.getItem("admin_token");
+  });
 
   useEffect(() => {
     const token = localStorage.getItem("admin_token");
-    if (token) setIsAuthenticated(true);
+    setIsAuthenticated(!!token);
   }, []);
 
   const login = async (password: string) => {
@@ -28,11 +36,16 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
     setIsAuthenticated(false);
   };
 
-  return <Ctx.Provider value={{ isAuthenticated, login, logout }}>{children}</Ctx.Provider>;
+  return (
+    <AdminAuthContext.Provider value={{ isAuthenticated, login, logout }}>
+      {children}
+    </AdminAuthContext.Provider>
+  );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAdminAuth() {
-  const ctx = useContext(Ctx);
+  const ctx = useContext(AdminAuthContext);
   if (!ctx) throw new Error("useAdminAuth must be used inside AdminAuthProvider");
   return ctx;
 }

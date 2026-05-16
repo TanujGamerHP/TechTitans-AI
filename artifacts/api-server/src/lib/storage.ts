@@ -24,8 +24,16 @@ export interface StoredProject {
   services: string[];
   year: string;
   duration: string;
-  status: "draft" | "published";
+  status: "draft" | "published" | "archived";
   featured: boolean;
+  // Extra client & project details
+  clientName?: string;
+  industry?: string;
+  budget?: string;
+  ctaLink?: string;
+  liveLink?: string;
+  behanceLink?: string;
+  toolsUsed?: string[];
   createdAt: string;
   updatedAt: string;
 }

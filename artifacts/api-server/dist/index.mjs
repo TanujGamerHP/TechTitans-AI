@@ -28663,6 +28663,33 @@ router3.patch("/admin/projects/:id/publish", requireAdmin, (req, res) => {
   const updated = updateProject(req.params.id, { status: next });
   res.json(updated);
 });
+router3.post("/admin/projects/:id/duplicate", requireAdmin, (req, res) => {
+  const project = getProjectById(req.params.id);
+  if (!project) {
+    res.status(404).json({ error: "Not found" });
+    return;
+  }
+  const slug = project.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const newId = `${slug}-copy-${randomUUID().slice(0, 6)}`;
+  const duplicate = createProject({
+    ...project,
+    id: newId,
+    title: `${project.title} (Copy)`,
+    status: "draft",
+    featured: false
+  });
+  res.status(201).json(duplicate);
+});
+router3.patch("/admin/projects/:id/archive", requireAdmin, (req, res) => {
+  const project = getProjectById(req.params.id);
+  if (!project) {
+    res.status(404).json({ error: "Not found" });
+    return;
+  }
+  const next = project.status === "archived" ? "draft" : "archived";
+  const updated = updateProject(req.params.id, { status: next });
+  res.json(updated);
+});
 router3.delete("/admin/projects/:id", requireAdmin, (req, res) => {
   const ok = deleteProject(req.params.id);
   if (!ok) {

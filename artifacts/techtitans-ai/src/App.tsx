@@ -1,4 +1,4 @@
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -20,11 +20,39 @@ import ProjectForm from "@/pages/admin/ProjectForm";
 
 const queryClient = new QueryClient();
 
-function PublicRouter() {
+function AppRoutes() {
+  const [location] = useLocation();
+  const isAdmin = location.startsWith("/admin");
+
   return (
     <>
-      <CinematicBackground />
+      {!isAdmin && <CinematicBackground />}
       <Switch>
+        {/* ── Admin routes (no background, private) ── */}
+        <Route path="/admin" component={AdminLogin} />
+        <Route path="/admin/dashboard">
+          {() => (
+            <AdminGuard>
+              <AdminDashboard />
+            </AdminGuard>
+          )}
+        </Route>
+        <Route path="/admin/projects/new">
+          {() => (
+            <AdminGuard>
+              <ProjectForm />
+            </AdminGuard>
+          )}
+        </Route>
+        <Route path="/admin/projects/:id/edit">
+          {() => (
+            <AdminGuard>
+              <ProjectForm />
+            </AdminGuard>
+          )}
+        </Route>
+
+        {/* ── Public routes ── */}
         <Route path="/" component={Home} />
         <Route path="/portfolio" component={PortfolioPage} />
         <Route path="/portfolio/:id" component={CaseStudy} />
@@ -39,23 +67,6 @@ function PublicRouter() {
   );
 }
 
-function AdminRouter() {
-  return (
-    <Switch>
-      <Route path="/admin" component={AdminLogin} />
-      <Route path="/admin/dashboard">
-        {() => <AdminGuard><AdminDashboard /></AdminGuard>}
-      </Route>
-      <Route path="/admin/projects/new">
-        {() => <AdminGuard><ProjectForm /></AdminGuard>}
-      </Route>
-      <Route path="/admin/projects/:id/edit">
-        {() => <AdminGuard><ProjectForm /></AdminGuard>}
-      </Route>
-    </Switch>
-  );
-}
-
 function App() {
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -64,17 +75,7 @@ function App() {
       <TooltipProvider>
         <AdminAuthProvider>
           <WouterRouter base={base}>
-            <Switch>
-              <Route path="/admin">
-                {() => <AdminRouter />}
-              </Route>
-              <Route path="/admin/:rest*">
-                {() => <AdminRouter />}
-              </Route>
-              <Route>
-                {() => <PublicRouter />}
-              </Route>
-            </Switch>
+            <AppRoutes />
           </WouterRouter>
         </AdminAuthProvider>
         <Toaster />

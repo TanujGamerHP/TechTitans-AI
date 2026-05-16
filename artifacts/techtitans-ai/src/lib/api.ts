@@ -54,6 +54,16 @@ export const api = {
           method: "PATCH",
           headers: authHeaders(),
         }),
+      duplicate: (id: string) =>
+        request<any>(`/api/admin/projects/${id}/duplicate`, {
+          method: "POST",
+          headers: authHeaders(),
+        }),
+      archive: (id: string) =>
+        request<any>(`/api/admin/projects/${id}/archive`, {
+          method: "PATCH",
+          headers: authHeaders(),
+        }),
       delete: (id: string) =>
         request<any>(`/api/admin/projects/${id}`, {
           method: "DELETE",
