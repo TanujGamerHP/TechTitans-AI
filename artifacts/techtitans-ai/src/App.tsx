@@ -11,6 +11,7 @@ import AboutUs from "@/pages/AboutUs";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsConditions from "@/pages/TermsConditions";
 import ServicePage from "@/pages/ServicePage";
+import SubServicePage from "@/pages/SubServicePage";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ function Router() {
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/terms-conditions" component={TermsConditions} />
       <Route path="/services/:id" component={ServicePage} />
+      <Route path="/services/:serviceId/:subServiceId" component={SubServicePage} />
       <Route component={NotFound} />
     </Switch>
   );
