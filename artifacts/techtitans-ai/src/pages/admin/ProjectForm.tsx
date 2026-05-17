@@ -3,10 +3,11 @@ import { useLocation, useParams } from "wouter";
 import { motion } from "framer-motion";
 import {
   ArrowLeft, Plus, Trash2, Save, Eye, Zap,
-  Link, Users, Briefcase, DollarSign, Wrench, Tag
+  Link, Users, Briefcase, Wrench, Tag
 } from "lucide-react";
 import { api } from "@/lib/api";
 import { servicesData } from "@/data/servicesData";
+import { MediaUploader } from "@/components/admin/MediaUploader";
 
 const INPUT = "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-primary/60 focus:bg-white/8 transition-all text-sm";
 const TEXTAREA = INPUT + " resize-none";
@@ -307,29 +308,25 @@ export default function ProjectForm() {
         {/* ── SECTION 6: Media ── */}
         <div className={SECTION}>
           <h2 className="text-white font-display font-bold text-base">Media & Images</h2>
-          <div>
-            <label className={LABEL}>Thumbnail Image URL *</label>
-            <input className={INPUT} value={form.image} onChange={(e) => set("image", e.target.value)}
-              placeholder="https://images.unsplash.com/photo-...?w=800&q=80" />
-            {form.image && (
-              <div className="mt-3 rounded-xl overflow-hidden border border-white/10">
-                <img src={form.image} alt="thumbnail preview" className="w-full h-40 object-cover opacity-80" />
-              </div>
-            )}
-            <p className="text-xs text-foreground-muted mt-2">
-              Tip: Use <span className="text-primary">Unsplash</span> URLs — add <code className="text-accent">?w=800&q=80</code> at the end for the thumbnail.
-            </p>
-          </div>
-          <div>
-            <label className={LABEL}>Cover / Hero Image URL <span className="normal-case font-normal text-white/30">(optional — defaults to thumbnail)</span></label>
-            <input className={INPUT} value={form.coverImage} onChange={(e) => set("coverImage", e.target.value)}
-              placeholder="https://images.unsplash.com/photo-...?w=1600&q=90" />
-            {form.coverImage && (
-              <div className="mt-3 rounded-xl overflow-hidden border border-white/10">
-                <img src={form.coverImage} alt="cover preview" className="w-full h-32 object-cover opacity-60" />
-              </div>
-            )}
-          </div>
+          <p className="text-xs text-foreground-muted -mt-2">
+            Upload directly from your device or paste a URL. Supported: JPG, PNG, GIF, WebP, SVG, MP4, WebM, PDF — up to 50MB each.
+          </p>
+
+          <MediaUploader
+            label="Thumbnail Image *"
+            value={form.image}
+            onChange={(url) => set("image", url)}
+            accept="image+video"
+            hint="Used on portfolio grid cards and case study previews."
+          />
+
+          <MediaUploader
+            label="Cover / Hero Image"
+            value={form.coverImage}
+            onChange={(url) => set("coverImage", url)}
+            accept="image+video"
+            hint="Full-width image shown at the top of the case study page. Defaults to thumbnail if left empty."
+          />
         </div>
 
         {/* ── SECTION 7: Links ── */}
