@@ -1,9 +1,10 @@
 const BASE = import.meta.env.VITE_API_URL || "";
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
+  const { headers: extraHeaders, ...rest } = options ?? {};
   const res = await fetch(`${BASE}${path}`, {
-    headers: { "Content-Type": "application/json", ...options?.headers },
-    ...options,
+    headers: { "Content-Type": "application/json", ...extraHeaders },
+    ...rest,
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({ error: res.statusText }));
