@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useParams } from "wouter";
+import { useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import {
   ArrowLeft, Plus, Trash2, Save, Eye, Zap,
@@ -35,6 +36,7 @@ const EMPTY: FormState = {
 export default function ProjectForm() {
   const params = useParams<{ id?: string }>();
   const [, navigate] = useLocation();
+  const queryClient = useQueryClient();
   const isEdit = !!params.id && params.id !== "new";
 
   const [form, setForm] = useState<FormState>(EMPTY);
@@ -104,10 +106,13 @@ export default function ProjectForm() {
       };
       if (isEdit) {
         await api.admin.projects.update(params.id!, payload);
+        queryClient.invalidateQueries({ queryKey: ["projects"] });
+        queryClient.invalidateQueries({ queryKey: ["project", params.id!] });
         setSuccess("Project updated successfully!");
         setTimeout(() => setSuccess(""), 3000);
       } else {
         await api.admin.projects.create(payload);
+        queryClient.invalidateQueries({ queryKey: ["projects"] });
         setSuccess("Project created!");
         setTimeout(() => navigate("/admin/dashboard"), 1200);
       }

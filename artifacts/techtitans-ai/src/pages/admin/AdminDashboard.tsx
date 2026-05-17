@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
+import { useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Plus, Search, LogOut, Star, Globe, Edit3, Trash2,
@@ -35,6 +36,7 @@ function Toast({ msg, onDone }: { msg: string; onDone: () => void }) {
 export default function AdminDashboard() {
   const { logout } = useAdminAuth();
   const [, navigate] = useLocation();
+  const queryClient = useQueryClient();
   const [projects, setProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -65,34 +67,41 @@ export default function AdminDashboard() {
 
   const showToast = (msg: string) => setToast(msg);
 
+  const invalidate = () => queryClient.invalidateQueries({ queryKey: ["projects"] });
+
   const handleDelete = async (id: string, title: string) => {
     if (!confirm(`Delete "${title}"? This cannot be undone.`)) return;
     await api.admin.projects.delete(id);
     setProjects((p) => p.filter((x) => x.id !== id));
+    invalidate();
     showToast("Project deleted.");
   };
 
   const handleDuplicate = async (id: string) => {
     const dup = await api.admin.projects.duplicate(id);
     setProjects((p) => [dup, ...p]);
+    invalidate();
     showToast("Project duplicated as draft.");
   };
 
   const handleArchive = async (id: string) => {
     const updated = await api.admin.projects.archive(id);
     setProjects((p) => p.map((x) => (x.id === id ? updated : x)));
+    invalidate();
     showToast(updated.status === "archived" ? "Project archived." : "Project restored.");
   };
 
   const handleToggleFeatured = async (id: string) => {
     const updated = await api.admin.projects.toggleFeatured(id);
     setProjects((p) => p.map((x) => (x.id === id ? updated : x)));
+    invalidate();
     showToast(updated.featured ? "Marked as featured." : "Removed from featured.");
   };
 
   const handleTogglePublish = async (id: string) => {
     const updated = await api.admin.projects.togglePublish(id);
     setProjects((p) => p.map((x) => (x.id === id ? updated : x)));
+    invalidate();
     showToast(updated.status === "published" ? "Published." : "Set to draft.");
   };
 

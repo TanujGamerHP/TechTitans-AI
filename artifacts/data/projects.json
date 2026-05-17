@@ -26,10 +26,10 @@
     ],
     "year": "2025",
     "duration": "2 weeks",
-    "status": "draft",
-    "featured": false,
+    "status": "published",
+    "featured": true,
     "createdAt": "2026-05-16T05:52:50.140Z",
-    "updatedAt": "2026-05-16T05:52:50.140Z"
+    "updatedAt": "2026-05-17T05:11:55.454Z"
   },
   {
     "id": "aura-brand",
