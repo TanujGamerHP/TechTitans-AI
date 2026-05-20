@@ -13,8 +13,8 @@
     "tags": [
       "Test"
     ],
-    "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80",
+    "image": "/api/uploads/1779106210257-qgsu2l.jpg",
+    "coverImage": "/api/uploads/1779106220593-8fmrtz.jpg",
     "results": [
       {
         "label": "Test",
@@ -29,7 +29,14 @@
     "status": "published",
     "featured": true,
     "createdAt": "2026-05-16T05:52:50.140Z",
-    "updatedAt": "2026-05-17T05:31:44.792Z"
+    "updatedAt": "2026-05-18T12:10:47.736Z",
+    "clientName": "",
+    "industry": "",
+    "budget": "",
+    "ctaLink": "",
+    "liveLink": "",
+    "behanceLink": "",
+    "toolsUsed": []
   },
   {
     "id": "aura-brand",
