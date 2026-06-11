@@ -82,14 +82,13 @@ export default function PortfolioPage() {
               >
                 <div className="rounded-3xl overflow-hidden glass-card relative">
                   {/* Image */}
-                  <div className="aspect-[16/9] overflow-hidden relative">
+                  <div className="relative overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
-                      style={{ objectPosition: project.imagePosition || "center" }}
+                      className="w-full h-auto block opacity-80 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
 
                     <div className="absolute top-5 left-5 flex gap-2">

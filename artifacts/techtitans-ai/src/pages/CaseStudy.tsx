@@ -233,11 +233,11 @@ export default function CaseStudy() {
                   onClick={() => navigate(`/portfolio/${p.id}`)}
                   className="group cursor-pointer glass-card rounded-2xl overflow-hidden"
                 >
-                  <div className="aspect-[16/9] overflow-hidden relative">
+                  <div className="relative overflow-hidden">
                     <img
                       src={p.image}
                       alt={p.title}
-                      className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500"
+                      className="w-full h-auto block opacity-70 group-hover:opacity-90 group-hover:scale-[1.03] transition-all duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                   </div>
