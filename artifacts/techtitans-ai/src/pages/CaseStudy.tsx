@@ -44,6 +44,7 @@ export default function CaseStudy() {
           src={project.coverImage}
           alt={project.title}
           className="w-full h-full object-cover opacity-40"
+          style={{ objectPosition: project.coverImagePosition || "center" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 to-transparent" />

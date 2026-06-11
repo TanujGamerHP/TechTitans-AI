@@ -45278,7 +45278,10 @@ router3.post("/admin/projects", requireAdmin, (req, res) => {
     year: body.year || (/* @__PURE__ */ new Date()).getFullYear().toString(),
     duration: body.duration || "",
     status: body.status || "draft",
-    featured: body.featured ?? false
+    featured: body.featured ?? false,
+    imagePosition: body.imagePosition || "center",
+    coverImagePosition: body.coverImagePosition || "center",
+    gallery: body.gallery || []
   });
   res.status(201).json(project);
 });

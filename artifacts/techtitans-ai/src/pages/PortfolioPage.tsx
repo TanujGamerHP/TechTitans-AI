@@ -87,6 +87,7 @@ export default function PortfolioPage() {
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
+                      style={{ objectPosition: project.imagePosition || "center" }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-40 transition-opacity duration-500" />

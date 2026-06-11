@@ -104,6 +104,9 @@ router.post("/admin/projects", requireAdmin, (req, res) => {
     duration: body.duration || "",
     status: body.status || "draft",
     featured: body.featured ?? false,
+    imagePosition: body.imagePosition || "center",
+    coverImagePosition: body.coverImagePosition || "center",
+    gallery: body.gallery || [],
   });
 
   res.status(201).json(project);

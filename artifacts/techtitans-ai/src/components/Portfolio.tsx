@@ -52,6 +52,7 @@ export function Portfolio() {
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
+                      style={{ objectPosition: project.imagePosition || "center" }}
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />

@@ -9,6 +9,7 @@ import {
 import { api } from "@/lib/api";
 import { servicesData } from "@/data/servicesData";
 import { MediaUploader } from "@/components/admin/MediaUploader";
+import { FocalPointPicker } from "@/components/admin/FocalPointPicker";
 
 const INPUT = "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-primary/60 focus:bg-white/8 transition-all text-sm";
 const TEXTAREA = INPUT + " resize-none";
@@ -20,6 +21,7 @@ interface FormState {
   serviceId: string; subServiceId: string; category: string; subCategory: string;
   tags: string; image: string; coverImage: string; year: string; duration: string;
   status: "draft" | "published" | "archived"; featured: boolean; services: string;
+  imagePosition: string; coverImagePosition: string;
   // Extended fields
   clientName: string; industry: string; budget: string;
   ctaLink: string; liveLink: string; behanceLink: string; toolsUsed: string;
@@ -30,6 +32,7 @@ const EMPTY: FormState = {
   serviceId: "branding", subServiceId: "", category: "", subCategory: "",
   tags: "", image: "", coverImage: "", year: new Date().getFullYear().toString(),
   duration: "", status: "draft", featured: false, services: "",
+  imagePosition: "center", coverImagePosition: "center",
   clientName: "", industry: "", budget: "", ctaLink: "", liveLink: "", behanceLink: "", toolsUsed: "",
 };
 
@@ -62,6 +65,8 @@ export default function ProjectForm() {
         year: p.year || "", duration: p.duration || "",
         status: p.status || "draft", featured: p.featured ?? false,
         services: Array.isArray(p.services) ? p.services.join(", ") : "",
+        imagePosition: p.imagePosition || "center",
+        coverImagePosition: p.coverImagePosition || "center",
         clientName: p.clientName || "", industry: p.industry || "",
         budget: p.budget || "", ctaLink: p.ctaLink || "",
         liveLink: p.liveLink || "", behanceLink: p.behanceLink || "",
@@ -314,24 +319,54 @@ export default function ProjectForm() {
         <div className={SECTION}>
           <h2 className="text-white font-display font-bold text-base">Media & Images</h2>
           <p className="text-xs text-foreground-muted -mt-2">
-            Upload directly from your device or paste a URL. Supported: JPG, PNG, GIF, WebP, SVG, MP4, WebM, PDF — up to 50MB each.
+            Upload from device or paste a URL. After upload, pick a <span className="text-white/70">focal point</span> so the important part is never cut off on portfolio cards.
           </p>
 
-          <MediaUploader
-            label="Thumbnail Image *"
-            value={form.image}
-            onChange={(url) => set("image", url)}
-            accept="image+video"
-            hint="Used on portfolio grid cards and case study previews."
-          />
+          {/* Thumbnail */}
+          <div className="space-y-4 p-5 rounded-2xl border border-white/8 bg-white/2">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary" />
+              <span className="text-white text-sm font-semibold">Thumbnail Image *</span>
+              <span className="text-xs text-foreground-muted">(shown on portfolio grid cards)</span>
+            </div>
+            <MediaUploader
+              label=""
+              value={form.image}
+              onChange={(url) => set("image", url)}
+              accept="image+video"
+              hint="This is the card image visitors see when browsing your portfolio."
+            />
+            {form.image && (
+              <FocalPointPicker
+                value={form.imagePosition}
+                onChange={(v) => set("imagePosition", v)}
+                imageUrl={form.image}
+              />
+            )}
+          </div>
 
-          <MediaUploader
-            label="Cover / Hero Image"
-            value={form.coverImage}
-            onChange={(url) => set("coverImage", url)}
-            accept="image+video"
-            hint="Full-width image shown at the top of the case study page. Defaults to thumbnail if left empty."
-          />
+          {/* Cover / Hero */}
+          <div className="space-y-4 p-5 rounded-2xl border border-white/8 bg-white/2">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-accent" />
+              <span className="text-white text-sm font-semibold">Cover / Hero Image</span>
+              <span className="text-xs text-foreground-muted">(full-width banner on the case study page)</span>
+            </div>
+            <MediaUploader
+              label=""
+              value={form.coverImage}
+              onChange={(url) => set("coverImage", url)}
+              accept="image+video"
+              hint="Defaults to the thumbnail if left empty. Use a wide landscape image for best results."
+            />
+            {form.coverImage && (
+              <FocalPointPicker
+                value={form.coverImagePosition}
+                onChange={(v) => set("coverImagePosition", v)}
+                imageUrl={form.coverImage}
+              />
+            )}
+          </div>
         </div>
 
         {/* ── SECTION 7: Links ── */}

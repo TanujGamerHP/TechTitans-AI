@@ -26,6 +26,10 @@ export interface StoredProject {
   duration: string;
   status: "draft" | "published" | "archived";
   featured: boolean;
+  // Media positioning
+  imagePosition?: string;
+  coverImagePosition?: string;
+  gallery?: string[];
   // Extra client & project details
   clientName?: string;
   industry?: string;
