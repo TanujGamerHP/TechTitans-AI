@@ -1,17 +1,19 @@
 import { useParams, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Loader2 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { servicesData } from "@/data/servicesData";
-import { projects } from "@/data/projects";
+import { useProjects } from "@/hooks/useProjects";
 
 export default function ServicePage() {
   const params = useParams<{ id: string }>();
   const [, navigate] = useLocation();
 
   const service = servicesData.find((s) => s.id === params.id);
-  const serviceProjects = projects.filter((p) => p.serviceId === params.id).slice(0, 4);
+  const { data: allProjects = [], isLoading } = useProjects();
+
+  const serviceProjects = allProjects.filter((p: any) => p.serviceId === params.id);
 
   if (!service) {
     return (
@@ -57,7 +59,7 @@ export default function ServicePage() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-16 py-20">
 
-        {/* Sub-services Grid — Each card is clickable */}
+        {/* Sub-services Grid */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="mb-24">
           <p className="text-primary font-semibold tracking-widest text-sm uppercase mb-3">What's Included</p>
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Our {service.shortTitle} Services</h2>
@@ -65,8 +67,8 @@ export default function ServicePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {service.subServices.map((sub, i) => {
-              const subProjects = projects.filter(
-                (p) => p.serviceId === service.id && p.subServiceId === sub.id
+              const subProjects = allProjects.filter(
+                (p: any) => p.serviceId === service.id && p.subServiceId === sub.id
               );
               return (
                 <motion.div
@@ -77,7 +79,6 @@ export default function ServicePage() {
                   onClick={() => navigate(`/services/${service.id}/${sub.id}`)}
                   className="glass-card rounded-2xl p-6 group hover:-translate-y-1.5 transition-all duration-300 cursor-pointer relative overflow-hidden"
                 >
-                  {/* Hover glow */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-400 rounded-2xl`} />
 
                   <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${service.color} bg-opacity-20 flex items-center justify-center mb-4 text-lg font-bold text-white flex-shrink-0`}>
@@ -91,7 +92,6 @@ export default function ServicePage() {
                   </div>
                   <p className="text-foreground-muted text-sm leading-relaxed mb-4">{sub.description}</p>
 
-                  {/* Project count badge */}
                   {subProjects.length > 0 && (
                     <div className="flex items-center gap-1.5 text-xs font-medium text-primary">
                       <span className="w-1.5 h-1.5 rounded-full bg-primary" />
@@ -104,13 +104,19 @@ export default function ServicePage() {
           </div>
         </motion.div>
 
-        {/* Featured Projects from this service */}
-        {serviceProjects.length > 0 && (
+        {/* Featured Projects from this service — live from API */}
+        {isLoading ? (
+          <div className="flex items-center justify-center py-12 text-foreground-muted mb-24">
+            <Loader2 className="w-5 h-5 animate-spin mr-2" /> Loading projects…
+          </div>
+        ) : serviceProjects.length > 0 ? (
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="mb-24">
             <div className="flex items-end justify-between mb-12">
               <div>
                 <p className="text-primary font-semibold tracking-widest text-sm uppercase mb-3">Portfolio</p>
-                <h2 className="text-3xl md:text-4xl font-display font-bold">Featured Projects</h2>
+                <h2 className="text-3xl md:text-4xl font-display font-bold">
+                  {service.shortTitle} Projects
+                </h2>
               </div>
               <button
                 onClick={() => navigate("/portfolio")}
@@ -121,8 +127,8 @@ export default function ServicePage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {serviceProjects.map((project, i) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {serviceProjects.map((project: any, i: number) => (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -131,11 +137,11 @@ export default function ServicePage() {
                   onClick={() => navigate(`/portfolio/${project.id}`)}
                   className="group cursor-pointer glass-card rounded-2xl overflow-hidden"
                 >
-                  <div className="aspect-[4/3] overflow-hidden relative">
+                  <div className="relative overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+                      className="w-full h-auto block opacity-70 group-hover:opacity-95 group-hover:scale-[1.03] transition-all duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
                     <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
@@ -156,7 +162,7 @@ export default function ServicePage() {
               ))}
             </div>
           </motion.div>
-        )}
+        ) : null}
 
         {/* CTA */}
         <motion.div
