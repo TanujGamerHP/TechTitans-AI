@@ -1,42 +1,44 @@
 [
   {
     "id": "test-project-26acc7",
-    "title": "Test Project",
-    "tagline": "Testing the form",
+    "title": "Product Packet Design for Almonds",
+    "tagline": "Designing a packet design for Full Oil Almonds for Prajnaa.",
     "overview": "",
     "challenge": "",
     "solution": "",
     "serviceId": "branding",
-    "subServiceId": "identity",
+    "subServiceId": "packaging",
     "category": "Creative Branding",
-    "subCategory": "Brand Identity",
+    "subCategory": "Product Packaging Design",
     "tags": [
-      "Test"
+      "Product"
     ],
-    "image": "/api/uploads/1779106210257-qgsu2l.jpg",
+    "image": "/api/uploads/1781236406660-ttxmjk.jpg",
     "coverImage": "/api/uploads/1779106220593-8fmrtz.jpg",
     "results": [
       {
-        "label": "Test",
+        "label": "ROAS",
         "value": "100%"
       }
     ],
     "services": [
       "Design"
     ],
-    "year": "2025",
-    "duration": "2 weeks",
+    "year": "2026",
+    "duration": "1 Week",
     "status": "published",
     "featured": true,
     "createdAt": "2026-05-16T05:52:50.140Z",
-    "updatedAt": "2026-05-18T12:10:47.736Z",
-    "clientName": "",
-    "industry": "",
-    "budget": "",
+    "updatedAt": "2026-06-12T03:59:47.609Z",
+    "clientName": "Nishant Sharma",
+    "industry": "Herbel",
+    "budget": "300 Rupees",
     "ctaLink": "",
-    "liveLink": "",
+    "liveLink": "Prajnaa.in",
     "behanceLink": "",
-    "toolsUsed": []
+    "toolsUsed": [],
+    "imagePosition": "center",
+    "coverImagePosition": "center"
   },
   {
     "id": "aura-brand",

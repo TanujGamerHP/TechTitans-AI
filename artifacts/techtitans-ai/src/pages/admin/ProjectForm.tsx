@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useParams } from "wouter";
 import { useQueryClient } from "@tanstack/react-query";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft, Plus, Trash2, Save, Eye, Zap,
   Link, Users, Briefcase, Wrench, Tag
@@ -46,8 +46,12 @@ export default function ProjectForm() {
   const [results, setResults] = useState([{ label: "", value: "" }]);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [toast, setToast] = useState<{ msg: string; type: "error" | "success" } | null>(null);
+
+  const showToast = (msg: string, type: "error" | "success") => {
+    setToast({ msg, type });
+    setTimeout(() => setToast(null), 4000);
+  };
 
   const currentService = servicesData.find((s) => s.id === form.serviceId);
 
@@ -96,9 +100,8 @@ export default function ProjectForm() {
     setResults((r) => r.map((item, idx) => idx === i ? { ...item, [key]: val } : item));
 
   const handleSubmit = async (publishOverride?: boolean) => {
+    if (!form.title.trim()) { showToast("Project title is required.", "error"); return; }
     setSaving(true);
-    setError("");
-    setSuccess("");
     try {
       const payload = {
         ...form,
@@ -112,17 +115,28 @@ export default function ProjectForm() {
       if (isEdit) {
         await api.admin.projects.update(params.id!, payload);
         queryClient.invalidateQueries({ queryKey: ["projects"] });
+        queryClient.refetchQueries({ queryKey: ["projects"] });
         queryClient.invalidateQueries({ queryKey: ["project", params.id!] });
-        setSuccess("Project updated successfully!");
-        setTimeout(() => setSuccess(""), 3000);
+        if (publishOverride === true) {
+          showToast("Published! Redirecting…", "success");
+          setTimeout(() => navigate("/admin/dashboard"), 600);
+        } else {
+          showToast("Changes saved!", "success");
+        }
       } else {
-        await api.admin.projects.create(payload);
+        const created = await api.admin.projects.create(payload);
         queryClient.invalidateQueries({ queryKey: ["projects"] });
-        setSuccess("Project created!");
-        setTimeout(() => navigate("/admin/dashboard"), 1200);
+        queryClient.refetchQueries({ queryKey: ["projects"] });
+        if (publishOverride === true) {
+          showToast(`"${created.title}" is now live!`, "success");
+          setTimeout(() => navigate("/admin/dashboard"), 600);
+        } else {
+          showToast("Draft saved! Redirecting…", "success");
+          setTimeout(() => navigate("/admin/dashboard"), 800);
+        }
       }
     } catch (err: any) {
-      setError(err.message || "Something went wrong. Check that you are logged in.");
+      showToast(err.message || "Something went wrong — check that you are logged in.", "error");
     } finally {
       setSaving(false);
     }
@@ -136,6 +150,25 @@ export default function ProjectForm() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Fixed toast — always visible regardless of scroll */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            className={`fixed top-5 right-5 z-[100] flex items-center gap-3 px-5 py-3.5 rounded-2xl border shadow-2xl backdrop-blur-xl text-sm font-medium max-w-sm ${
+              toast.type === "error"
+                ? "bg-red-500/20 border-red-500/40 text-red-300"
+                : "bg-green-500/20 border-green-500/40 text-green-300"
+            }`}
+          >
+            <span className={`w-2 h-2 rounded-full flex-shrink-0 ${toast.type === "error" ? "bg-red-400" : "bg-green-400"}`} />
+            {toast.msg}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Ambient */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-[120px]" />
@@ -162,29 +195,18 @@ export default function ProjectForm() {
         <div className="flex gap-2">
           <button type="button" onClick={() => handleSubmit(false)} disabled={saving}
             className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-white/5 text-white text-sm font-medium hover:bg-white/10 transition-all disabled:opacity-50">
-            <Save className="w-4 h-4" /> {saving ? "Saving..." : "Save Draft"}
+            {saving ? <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <Save className="w-4 h-4" />}
+            {saving ? "Saving…" : "Save Draft"}
           </button>
           <button type="button" onClick={() => handleSubmit(true)} disabled={saving}
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-primary to-accent text-white text-sm font-semibold hover:opacity-90 transition-all disabled:opacity-50">
-            <Eye className="w-4 h-4" /> Publish
+            {saving ? <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" /> : <Eye className="w-4 h-4" />}
+            {saving ? "Publishing…" : "Publish & Go Live"}
           </button>
         </div>
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-10 py-8 space-y-6 pb-20">
-        {/* Alerts */}
-        {error && (
-          <motion.div initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }}
-            className="px-5 py-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
-            {error}
-          </motion.div>
-        )}
-        {success && (
-          <motion.div initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }}
-            className="px-5 py-3 rounded-xl bg-green-500/10 border border-green-500/30 text-green-400 text-sm">
-            {success}
-          </motion.div>
-        )}
 
         {/* ── SECTION 1: Basic Info ── */}
         <div className={SECTION}>
